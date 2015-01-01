@@ -1,0 +1,79 @@
+
+
+@mixin box-shadow($top, $left, $blur, $size, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $size $color;
+        -moz-box-shadow:inset $top $left $blur $size $color;
+        box-shadow:inset $top $left $blur $size $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $size $color;
+        -moz-box-shadow: $top $left $blur $size $color;
+        box-shadow: $top $left $blur $size $color;
+    }
+}
+
+@mixin rounded($radius: 0.5em) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+#content {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color :rgb(210, 100, 21);
+    @include box-shadow(4px,4px,4px,1px,rgba(0, 0, 0, 0.2), false); 
+	@include rounded(.3em);
+    #add-event, #add-category{
+   		 font-size: 15px;
+	}
+	.tdcls   {
+	    width : 10px;
+	}
+	td.rank div {
+    	display: block;
+    	text-align: center;
+	}
+	td,  th {
+   		padding: 12px;
+	}
+	th {
+    	font-size: 24px;
+	}
+ 	.imgcls img {
+	    padding: 8px;
+	    padding-right: 24px;
+	    padding-left: 24px;
+	    margin: 2px;
+	    border-radius: 8px;
+	    cursor: pointer;
+	    cursor: hand;
+	}
+}
+
+.main_table {
+    width: 100%;
+    border: 1px solid #dddddd;
+    background-color : #fff;
+    td , tr, th {
+     border: 1px solid #dddddd;
+    }
+    td.imgcls {
+    	width :10px;
+	}
+}
+
+body {
+  line-height: 1.4em;
+  background: #eeeeee;
+  color: #333333;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased; 
+  }
+
+
+
