@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Event Reminder</title>
+      <link href="assets/css/custom.css" rel="stylesheet">
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+      <script src="build/build.min.js"></script>
+   </head>
+   <body>
+      <div id="content"></div>
+
+      
+      <script type="text/template" id="add-category">
+         <tr>
+            <td>Category Name: <input id="new-category" type="text" placeholder="Enter Category Name"></td>
+             <td class="tdcls">
+               <div class="save imgcls"><img  title = "Save Category" src="./assets/images/save.png"></div>
+             </td>
+             <td class="tdcls">
+               <div class="back imgcls"><img title = "Back" src="./assets/images/back.png"></div>
+             </td>
+             </tr>
+           
+      </script>
+      <script type="text/template" id="categories-template">
+         <thead>
+           <tr class='header'>
+             <th colspan = "3" >Categories</th>
+             <th class="tdcls"><div class="add_category imgcls"><img title = "New Category" src="./assets/images/new_category.png"></div></th>
+           </tr>
+         </thead>
+         <tbody>
+         </tbody>
+      </script>
+      <script type="text/template" id="category-template">
+         <td><%= category %></td>
+          <td>
+           <%= events %> Events
+          </td>
+          <td class="tdcls">
+            <div class="edit imgcls"><img  title = "Edit Category"src="./assets/images/edit_category.png"></div>
+          </td>
+          <td class="tdcls">
+            <div class="delete imgcls"><img  title = "Delete Category"src="./assets/images/delete_category.png"></div>
+          </td>
+      </script>
+      <script type="text/template" id="event-template">
+         <td><%= eventName %></td>
+          <td>
+           <%= eventDate %> 
+          </td>
+          <td class="tdcls">
+            <div class="edit  imgcls"><img  title = "Edit Event" src="./assets/images/edit_event.png"></div>
+          </td>
+          <td class="tdcls">
+            <div class="delete imgcls"><img title = "Delete Event" src="./assets/images/delete_event.png"></div>
+          </td>
+      </script>
+      <script type="text/template" id="events-template">
+         <thead>
+           <tr class='header'>
+             <th colspan = "2" ><%= category %></th>
+             <th class="tdcls"><div class="add_event imgcls"><img  title = "New Event" src="./assets/images/new_event.png"></div></th>
+             <th class="tdcls"><div class="cancel imgcls"><img  title = "back" src="./assets/images/back.png"></div></th>
+           </tr>
+         </thead>
+         <tbody>
+         </tbody>
+      </script>
+      <script type="text/template" id="add-event">
+         <tr>
+           <td >Event Name: <input id="new-event" type="text" placeholder="Enter Event Name" value = "<%= eventName %>"></td>
+           <td>Event Date: <input type="text" id="datepicker" value = "<%= eventDate %>"  placeholder="Select Date"></p></td>
+           <td class="tdcls">
+               <div class="save  imgcls"><img title = "Save Event" src="./assets/images/save.png"></div>
+             </td>
+           <td class="tdcls">
+               <div class="cancel imgcls"><img title = "Back"src="./assets/images/back.png"></div>
+             </td>
+         </tr>
+           
+      </script>
+   </body>
+</html>
