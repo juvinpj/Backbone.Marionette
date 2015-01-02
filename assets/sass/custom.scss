@@ -1,4 +1,10 @@
 
+@mixin linear-gradient ($from, $to) {
+    background: -webkit-linear-gradient(left, $from , $to); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, $from, $to); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, $from, $to); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, $from, $to); /* Standard syntax (must be last) */
+}
 
 @mixin box-shadow($top, $left, $blur, $size, $color, $inset: false) {
     @if $inset {
@@ -12,12 +18,14 @@
     }
 }
 
+
 @mixin rounded($radius: 0.5em) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
 }
 #content {
+    color : #fff;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -25,55 +33,56 @@
     font-size: 20px;
     font-weight: bold;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    color :rgb(210, 100, 21);
+    @include linear-gradient(#ff8161 251px, #ffe598 563px);
     @include box-shadow(4px,4px,4px,1px,rgba(0, 0, 0, 0.2), false); 
-	@include rounded(.3em);
+    @include rounded(.3em);
     #add-event, #add-category{
-   		 font-size: 15px;
-	}
-	.tdcls   {
-	    width : 10px;
-	}
-	td.rank div {
-    	display: block;
-    	text-align: center;
-	}
-	td,  th {
-   		padding: 12px;
-	}
-	th {
-    	font-size: 24px;
-	}
- 	.imgcls img {
-	    padding: 8px;
-	    padding-right: 24px;
-	    padding-left: 24px;
-	    margin: 2px;
-	    border-radius: 8px;
-	    cursor: pointer;
-	    cursor: hand;
-	}
+       font-size: 15px;
+  }
+  .tdcls   {
+      width : 10px;
+  }
+  td.rank div {
+      display: block;
+      text-align: center;
+  }
+  td,  th {
+      padding: 12px;
+  }
+  th {
+      font-size: 24px;
+  }
+  .imgcls img {
+      padding: 8px;
+      padding-right: 24px;
+      padding-left: 24px;
+      margin: 2px;
+      border-radius: 8px;
+      cursor: pointer;
+      cursor: hand;
+  }
 }
 
 .main_table {
     width: 100%;
     border: 1px solid #dddddd;
-    background-color : #fff;
     td , tr, th {
      border: 1px solid #dddddd;
     }
     td.imgcls {
-    	width :10px;
-	}
+      width :10px;
+  }
 }
 
 body {
   line-height: 1.4em;
   background: #eeeeee;
-  color: #333333;
+  color: #fff;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased; 
+  background: url(../images/event-vector.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   }
-
-
-
