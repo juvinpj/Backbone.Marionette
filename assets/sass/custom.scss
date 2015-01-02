@@ -17,50 +17,64 @@
         box-shadow: $top $left $blur $size $color;
     }
 }
-
-
 @mixin rounded($radius: 0.5em) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
+
+
+
+
 #content {
     color : #fff;
-    width: 50%;
+    width: 60%;
+    @media screen and (max-width: 800px) {
+      width: 70%;
+      }
+    @media screen and (max-width: 700px) {
+      width: 80%;
+      }
+    @media screen and (max-width: 600px) {
+      width: 90%;
+      }
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      }
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
     font-size: 20px;
     font-weight: bold;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    @include linear-gradient(#ff8161 251px, #ffe598 563px);
+    @include linear-gradient(#ff8161 60%, #ffe598 100%);
     @include box-shadow(4px,4px,4px,1px,rgba(0, 0, 0, 0.2), false); 
     @include rounded(.3em);
     #add-event, #add-category{
-       font-size: 15px;
-  }
-  .tdcls   {
-      width : 10px;
-  }
-  td.rank div {
-      display: block;
-      text-align: center;
-  }
-  td,  th {
-      padding: 12px;
-  }
-  th {
-      font-size: 24px;
-  }
-  .imgcls img {
-      padding: 8px;
-      padding-right: 24px;
-      padding-left: 24px;
-      margin: 2px;
-      border-radius: 8px;
-      cursor: pointer;
-      cursor: hand;
-  }
+         font-size: 15px;
+      }
+    .tdcls   {
+        width : 10px;
+    }
+    td.rank div {
+        display: block;
+        text-align: center;
+    }
+    td,  th {
+        padding: 12px;
+    }
+    th {
+        font-size: 24px;
+    }
+    .imgcls img {
+        padding: 8px;
+        padding-right: 24px;
+        padding-left: 24px;
+        margin: 2px;
+        border-radius: 8px;
+        cursor: pointer;
+        cursor: hand;
+    }
 }
 
 .main_table {
@@ -76,7 +90,6 @@
 
 body {
   line-height: 1.4em;
-  background: #eeeeee;
   color: #fff;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased; 
@@ -86,3 +99,20 @@ body {
   -o-background-size: cover;
   background-size: cover;
   }
+
+@media screen and (max-width: 500px) {
+  table.main_table {
+    td, th{
+        display: none;
+        
+      }
+
+    td:nth-child(1) ,  th:nth-child(1) {
+      display: block;
+    } 
+    td:nth-child(2){
+      display: block;
+      font-size: 16px;
+    }
+    }
+}
