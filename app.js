@@ -9,11 +9,7 @@ require("./model/models");
 require("./collection/collections");
 require("./controller/controllers");
 
-
-MyApp.addRegions({
-  mainRegion: "#content"
-});
-
+MyApp.myController = new MyApp.MyController();
 
 myAppRouter  = Backbone.Marionette.AppRouter.extend({
     controller: MyApp.myController,
@@ -28,19 +24,20 @@ myAppRouter  = Backbone.Marionette.AppRouter.extend({
 });
 
 
-
-MyApp.addInitializer(function(options){
-  var categoriesView = new MyApp.CategoriesView({
+MyApp.on("start", function(options){
+   var categoriesView = new MyApp.CategoriesView({
     collection: MyApp.categories
   });
-
-  MyApp.mainRegion.show(categoriesView);
+  MyApp.layout = new MyApp.AppLayout();
+  Backbone.$('body').append(MyApp.layout.render().el);
   MyApp.myRouter = new myAppRouter();
 
-  Backbone.history.start();
+  if (Backbone.history){
+    Backbone.history.start();
+  }
 });
 
-Backbone.$(document).ready(function(){
+Backbone.$(function(){
   MyApp.categories  = new MyApp.Categories([
       new MyApp.Category({ category: 'Birthdays', events: 0 }),
       new MyApp.Category({ category: 'Anniversaries', events: 0 }),

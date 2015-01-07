@@ -4,12 +4,17 @@
       <title>Event Reminder</title>
       <link href="assets/css/custom.css" rel="stylesheet">
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-      <script src="build/build.min.js"></script>
+      <script src="build.js"></script>
    </head>
    <body>
-      <div id="content"></div>
 
-      
+      <!-- templates -->
+    <script id="layout-template" type="text/html">
+      <div class="container">
+        <div id="content"></div>
+      </div>
+    </script>
+    
       <script type="text/template" id="add-category">
          <tr>
             <td>Category Name: <input id="new-category" type="text" placeholder="Enter Category Name"></td>
@@ -31,6 +36,7 @@
          </thead>
          <tbody>
          </tbody>
+         </tableK>
       </script>
       <script type="text/template" id="category-template">
          <td><%= category %></td>

@@ -1,8 +1,14 @@
 
+MyApp.AppLayout = Backbone.Marionette.LayoutView.extend({
+    template: "#layout-template",
+    regions: {
+        content: "#content"
+    }
+});
 MyApp.AddCategoryView = Backbone.Marionette.ItemView.extend({
   tagName: "table",
   id: "add-category",
-  className: "table-striped table-bordered main_table",
+  className: "main_table",
   template: "#add-category",
 
   events: {
@@ -28,17 +34,13 @@ MyApp.AddCategoryView = Backbone.Marionette.ItemView.extend({
 
 
 MyApp.CategoryView = Backbone.Marionette.ItemView.extend({
-  template: "#category-template",
+  template: '#category-template',
   tagName: 'tr',
-  className: 'angry_cat category',
+  className: 'category',
   
   events: {
     'click .edit img': 'editCategory',
     'click .delete img': 'deleteCategory'
-  },
-  
-  initialize: function(){
-    // this.listenTo(this.model, "change:events", this.render);
   },
 
   editCategory: function(){
@@ -51,11 +53,12 @@ MyApp.CategoryView = Backbone.Marionette.ItemView.extend({
 });
 
 MyApp.CategoriesView = Backbone.Marionette.CompositeView.extend({
-  tagName: "table",
   id: "category_view",
-  className: "table-striped table-bordered main_table",
+  tagName: "table",
+  className: "main_table",
   template: "#categories-template",
-  itemView: MyApp.CategoryView,
+  childView: MyApp.CategoryView,
+  childViewContainer: "tbody",
 
   events: {
     'click .add_category img' : 'addCategory'
@@ -63,31 +66,19 @@ MyApp.CategoriesView = Backbone.Marionette.CompositeView.extend({
   
   addCategory: function(){
     MyApp.myRouter.navigate('#addCategory', true);
-  },
-
-  initialize: function(){
-    // this.listenTo(this.collection, "sort", this.renderCollection);
-  },
-  
-  appendHtml: function(collectionView, itemView){
-    collectionView.$("tbody").append(itemView.el);
   }
 });
 
 MyApp.EventView = Backbone.Marionette.ItemView.extend({
   template: "#event-template",
   tagName: 'tr',
-  className: 'angry_cat event_item',
+  className: 'event_item',
   
   events: {
     'click .edit img': 'editEvent',
     'click .delete img': 'deleteEvent'
   },
   
-  initialize: function(){
-    // this.listenTo(this.model, "change:events", this.render);
-  },
-
   editEvent: function(){
      MyApp.myRouter.navigate('#editEvent/'+this.model.get("parentCId")+'/'+this.model.cid, true);
   },
@@ -102,9 +93,9 @@ MyApp.EventView = Backbone.Marionette.ItemView.extend({
 MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
   tagName: "table",
   id: "events_view",
-  className: "table-striped table-bordered main_table",
+  className: "main_table",
   template: "#events-template",
-  itemView: MyApp.EventView,
+  childView: MyApp.EventView,
   templateHelpers: function() {
     var category =  MyApp.categories.get(this.options.categoryId);
     return { category: category.get('category') };
@@ -118,16 +109,12 @@ MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
     MyApp.myRouter.navigate('#addEvent/'+this.options.categoryId, true);
   },
 
-  initialize: function(){
-    // this.listenTo(this.collection, "sort", this.renderCollection);
-  },
-  
-  appendHtml: function(collectionView, itemView){
-    if(itemView && itemView.model.get('parentCId') === collectionView.options.categoryId){
-      collectionView.$("tbody").append(itemView.el);
+  attachHtml: function(collectionView, childView, index){
+    if(childView && childView.model.get('parentCId') === collectionView.options.categoryId){
+      collectionView.$("tbody").append(childView.el);
     }
-    
   },
+ 
   cancel : function() {
     MyApp.myRouter.navigate('#categories', true);
   }
@@ -137,7 +124,7 @@ MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
 MyApp.AddEventView = Backbone.Marionette.ItemView.extend({
   tagName: "table",
   id: "add-event",
-  className: "table-striped table-bordered main_table",
+  className: "main_table",
   template: "#add-event",
 
  events: {
