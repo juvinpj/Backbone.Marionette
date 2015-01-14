@@ -9,7 +9,7 @@ MyApp.Categories = Backbone.Collection.extend({
       } 
     }); 
   }
-   
+  
 });
 
 MyApp.Events = Backbone.Collection.extend({

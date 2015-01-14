@@ -1,9 +1,9 @@
 
 MyApp.AppLayout = Backbone.Marionette.LayoutView.extend({
-    template: "#layout-template",
-    regions: {
-        content: "#content"
-    }
+  template: "#layout-template",
+  regions: {
+    content: "#content"
+  }
 });
 MyApp.AddCategoryView = Backbone.Marionette.ItemView.extend({
   tagName: "table",
@@ -80,14 +80,14 @@ MyApp.EventView = Backbone.Marionette.ItemView.extend({
   },
   
   editEvent: function(){
-     MyApp.myRouter.navigate('#editEvent/'+this.model.get("parentCId")+'/'+this.model.cid, true);
-  },
-  
-  deleteEvent: function(){
-    var category =  MyApp.categories.get(this.model.get("parentCId"));
-    category.set('events', category.get('events') - 1);
-     this.model.destroy();
-     }
+   MyApp.myRouter.navigate('#editEvent/'+this.model.get("parentCId")+'/'+this.model.cid, true);
+ },
+ 
+ deleteEvent: function(){
+  var category =  MyApp.categories.get(this.model.get("parentCId"));
+  category.set('events', category.get('events') - 1);
+  this.model.destroy();
+}
 });
 
 MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
@@ -114,7 +114,7 @@ MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
       collectionView.$("tbody").append(childView.el);
     }
   },
- 
+  
   cancel : function() {
     MyApp.myRouter.navigate('#categories', true);
   }
@@ -127,7 +127,7 @@ MyApp.AddEventView = Backbone.Marionette.ItemView.extend({
   className: "main_table",
   template: "#add-event",
 
- events: {
+  events: {
     'click .save img': 'saveEvent',
     'click .cancel img': 'cancel'
   },
@@ -149,10 +149,10 @@ MyApp.AddEventView = Backbone.Marionette.ItemView.extend({
     
   },
   cancel : function() {
-     MyApp.myRouter.navigate('#event/'+this.model.get("parentCId"), true);
-  },
-  onRender: function(){
-    this.$( "#datepicker" ).datepicker();
-  }
-  
+   MyApp.myRouter.navigate('#event/'+this.model.get("parentCId"), true);
+ },
+ onRender: function(){
+  this.$( "#datepicker" ).datepicker();
+}
+
 });
