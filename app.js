@@ -1,5 +1,5 @@
 
-// add backbone.marionette into the window
+// Add required dependency js libs into the window
 require("./main");
 
 MyApp = new Backbone.Marionette.Application();
@@ -11,6 +11,7 @@ require("./controller/controllers");
 
 MyApp.myController = new MyApp.MyController();
 
+//Application Router configuration 
 myAppRouter  = Backbone.Marionette.AppRouter.extend({
   controller: MyApp.myController,
   appRoutes: {
@@ -23,20 +24,22 @@ myAppRouter  = Backbone.Marionette.AppRouter.extend({
   }
 });
 
-
+// Application Start
+// Create Application layout 
 MyApp.on("start", function(options){
  var categoriesView = new MyApp.CategoriesView({
   collection: MyApp.categories
-});
+  });
  MyApp.layout = new MyApp.AppLayout();
  Backbone.$('body').append(MyApp.layout.render().el);
  MyApp.myRouter = new myAppRouter();
 
  if (Backbone.history){
   Backbone.history.start();
-}
+  }
 });
 
+//Create new instances of Categories colllection and MyEvents object
 Backbone.$(function(){
   MyApp.categories  = new MyApp.Categories([
     new MyApp.Category({ category: 'Birthdays', events: 0 }),
@@ -44,6 +47,6 @@ Backbone.$(function(){
     new MyApp.Category({ category: 'Holidays', events: 0 })
     ]);
 
-  MyApp.events = new MyApp.Events();
+  MyApp.myEvents = new MyApp.MyEvents();
   MyApp.start();
 });

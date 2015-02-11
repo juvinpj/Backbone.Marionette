@@ -1,10 +1,13 @@
-
+//Application Layout view
 MyApp.AppLayout = Backbone.Marionette.LayoutView.extend({
   template: "#layout-template",
   regions: {
     content: "#content"
   }
 });
+
+//Add Category View
+//This view contains a text field to create new type of category object
 MyApp.AddCategoryView = Backbone.Marionette.ItemView.extend({
   tagName: "table",
   id: "add-category",
@@ -32,7 +35,9 @@ MyApp.AddCategoryView = Backbone.Marionette.ItemView.extend({
 });
 
 
-
+//Category View
+//This view will display the events details of a perticular category. 
+//Multiple instance of this view form the entire categories view
 MyApp.CategoryView = Backbone.Marionette.ItemView.extend({
   template: '#category-template',
   tagName: 'tr',
@@ -52,6 +57,8 @@ MyApp.CategoryView = Backbone.Marionette.ItemView.extend({
   }
 });
 
+//Categories View
+//This is the home page, where all the categories and events are displayed
 MyApp.CategoriesView = Backbone.Marionette.CompositeView.extend({
   id: "category_view",
   tagName: "table",
@@ -68,6 +75,7 @@ MyApp.CategoriesView = Backbone.Marionette.CompositeView.extend({
     MyApp.myRouter.navigate('#addCategory', true);
   }
 });
+
 
 MyApp.EventView = Backbone.Marionette.ItemView.extend({
   template: "#event-template",
@@ -90,6 +98,9 @@ MyApp.EventView = Backbone.Marionette.ItemView.extend({
 }
 });
 
+
+//Events View
+//This page displays all the events of a perticular category 
 MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
   tagName: "table",
   id: "events_view",
@@ -120,7 +131,8 @@ MyApp.EventsView = Backbone.Marionette.CompositeView.extend({
   }
 });
 
-
+//Event view 
+//View for a single event
 MyApp.AddEventView = Backbone.Marionette.ItemView.extend({
   tagName: "table",
   id: "add-event",
@@ -141,7 +153,7 @@ MyApp.AddEventView = Backbone.Marionette.ItemView.extend({
       if(!this.options.editMode){
         category.set('events', category.get('events') + 1);
       }
-      MyApp.events.add(this.model);
+      MyApp.myEvents.add(this.model);
       MyApp.myRouter.navigate('#event/'+this.model.get("parentCId"), true);
     }else {
       return;
